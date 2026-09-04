@@ -1,0 +1,102 @@
+{
+  "meta": {
+    "titulo": "Documentos Contables",
+    "subtitulo": "Farmacia — Trujillo, Perú",
+    "modulo": "Activos Fijos"
+  },
+  "secciones": [
+    {
+      "id": "definicion",
+      "titulo": "Definición",
+      "parrafos": [
+        "Un activo fijo, denominado técnicamente 'Propiedad, Planta y Equipo' según la NIC 16, es un bien tangible que la farmacia utiliza para el desarrollo de sus operaciones, y no un bien destinado a la venta.",
+        "Se espera que su uso se extienda por más de un periodo (más de un año), a diferencia de las mercaderías o el inventario farmacéutico, que rotan constantemente."
+      ]
+    },
+    {
+      "id": "caracteristicas",
+      "titulo": "Características principales",
+      "parrafos": [
+        "Los activos fijos comparten un conjunto de rasgos que permiten distinguirlos de otras partidas del balance."
+      ],
+      "lista": [
+        "Uso duradero: vida útil superior a un año",
+        "No están destinados a la venta, a diferencia del inventario",
+        "Generan beneficios económicos futuros para la farmacia",
+        "Tienen un costo identificable y medible con fiabilidad"
+      ]
+    },
+    {
+      "id": "marco-normativo",
+      "titulo": "Marco normativo en Perú",
+      "parrafos": [
+        "El tratamiento contable y tributario de los activos fijos en Perú se apoya en tres referencias principales."
+      ],
+      "lista": [
+        "NIC 16: norma contable que regula el reconocimiento, la medición y la depreciación de la Propiedad, Planta y Equipo",
+        "PCGE (Plan Contable General Empresarial): ubica los activos fijos en la cuenta 33 'Propiedades, Planta y Equipo'",
+        "SUNAT: fija los porcentajes de depreciación tributaria aceptados en el Reglamento de la Ley del Impuesto a la Renta"
+      ]
+    },
+    {
+      "id": "reconocimiento",
+      "titulo": "Reconocimiento y medición inicial",
+      "parrafos": [
+        "Un activo fijo se registra inicialmente al costo, el cual incluye el precio de compra más todos los costos directamente atribuibles necesarios para que el bien esté en condiciones de operar, menos los descuentos comerciales obtenidos.",
+        "Ejemplo: el costo de una refrigeradora para medicamentos incluye su precio de lista, el flete hasta el local y la instalación, pero no los descuentos por pronto pago."
+      ]
+    },
+    {
+      "id": "depreciacion",
+      "titulo": "Depreciación",
+      "parrafos": [
+        "La depreciación es la distribución sistemática del costo de un activo a lo largo de su vida útil estimada, reflejando el desgaste por su uso en la operación de la farmacia.",
+        "SUNAT establece tasas máximas de depreciación anual aceptadas para efectos tributarios según el tipo de bien; la tabla de clasificación de esta página incluye las tasas más relevantes para una farmacia."
+      ]
+    }
+  ],
+  "clasificacion": [
+    {
+      "categoria": "Mobiliario",
+      "ejemplos": "Estantes, mostradores, vitrinas, sillas, escritorios",
+      "vidaUtilAnios": 10,
+      "tasaSunat": "10%"
+    },
+    {
+      "categoria": "Equipos de refrigeración",
+      "ejemplos": "Refrigeradoras y congeladoras para cadena de frío",
+      "vidaUtilAnios": 10,
+      "tasaSunat": "10%"
+    },
+    {
+      "categoria": "Equipos de cómputo",
+      "ejemplos": "Computadoras, impresoras, lectores de código de barras",
+      "vidaUtilAnios": 4,
+      "tasaSunat": "25%"
+    },
+    {
+      "categoria": "Equipos de punto de venta",
+      "ejemplos": "Cajas registradoras, POS",
+      "vidaUtilAnios": 10,
+      "tasaSunat": "10%"
+    },
+    {
+      "categoria": "Equipos de seguridad",
+      "ejemplos": "Cámaras de vigilancia, alarmas",
+      "vidaUtilAnios": 10,
+      "tasaSunat": "10%"
+    },
+    {
+      "categoria": "Vehículos",
+      "ejemplos": "Motos o autos para delivery de medicamentos",
+      "vidaUtilAnios": 5,
+      "tasaSunat": "20%"
+    },
+    {
+      "categoria": "Instalaciones",
+      "ejemplos": "Aire acondicionado, iluminación especial",
+      "vidaUtilAnios": 10,
+      "tasaSunat": "10%"
+    }
+  ]
+}
