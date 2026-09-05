@@ -1,168 +1,181 @@
+/* =========================================================
+   ESTILOS PREMIUM - EXPERIENCIA MÓVIL INTERACTIVA (APP)
+   ========================================================= */
+
 :root {
-  --paper: #f7f4ec;
-  --ink: #1c2b22;
-  --ink-soft: #4a564d;
-  --ledger-green: #2f5d45;
-  --ledger-green-dark: #1e3d2c;
-  --gold: #b8863b;
-  --line: #d8d2c2;
-  --card: #ffffff;
-  --nav-hover: #eef2ec;
-  --table-stripe: #faf9f5;
+  /* Paleta Oscura "Obsidiana & Oro" */
+  --bg-app: #0b0e14;
+  --bg-card: #141a24;
+  --text-primary: #f0f2f5;
+  --text-secondary: #8b95a5;
+  
+  /* Detalles de Lujo */
+  --gold-bright: #f5c77e;
+  --gold-muted: #cfa564;
+  --gold-dark: #85642a;
+  
+  /* Elementos de la App */
+  --border-color: #222c3d;
+  --nav-bg: rgba(20, 26, 36, 0.88);
+  --font-main: "Source Sans 3", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: "Lora", serif;
 }
 
 html[data-tema="oscuro"] {
-  --paper: #171d19;
-  --ink: #e8ece8;
-  --ink-soft: #aeb8ae;
-  --ledger-green: #4d9470;
-  --ledger-green-dark: #0f1512;
-  --gold: #d8a75c;
-  --line: #2c352e;
-  --card: #1e2621;
-  --nav-hover: #212a24;
-  --table-stripe: #1a211d;
+  --bg-app: #0b0e14;
+  --bg-card: #141a24;
+  --text-primary: #f0f2f5;
+  --text-secondary: #8b95a5;
+  --border-color: #222c3d;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
 
-html, body {
+body {
   margin: 0;
   padding: 0;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  line-height: 1.55;
-  transition: background-color 0.25s ease, color 0.25s ease;
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
 }
 
-h1, h2, h3 {
-  font-family: "Lora", Georgia, "Times New Roman", serif;
-  color: var(--ledger-green-dark);
-  margin: 0 0 0.5em 0;
-}
-
-.top-bar {
+/* Shell Contenedor con aspecto de Teléfono Móvil */
+.layout {
+  width: 100%;
+  max-width: 480px; /* Tamaño teléfono Pro */
+  min-height: 100vh;
+  background-color: var(--bg-app);
+  display: flex;
+  flex-direction: column;
   position: relative;
-  background: var(--ledger-green-dark);
-  color: var(--paper);
-  padding: 1.6rem 1.5rem 1.4rem;
-  border-bottom: 3px solid var(--gold);
-  transition: background-color 0.25s ease;
+  box-shadow: 0 0 50px rgba(0,0,0,0.6);
+  padding-bottom: 75px; /* Espacio para la barra inferior */
 }
 
-.toggle-tema {
-  position: absolute;
-  top: 1.4rem;
-  right: 1.5rem;
-  background: transparent;
-  border: 1px solid var(--gold);
-  color: var(--gold);
-  padding: 0.4rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.toggle-tema:hover {
-  background: var(--gold);
-  color: var(--ledger-green-dark);
-}
-
-@media (max-width: 560px) {
-  .toggle-tema {
-    position: static;
-    margin-top: 1rem;
-  }
+/* Header Estilo Top Bar de Smartphone */
+.top-bar {
+  background: linear-gradient(180deg, #161b26 0%, var(--bg-app) 100%);
+  padding: 1.5rem 1.2rem 0.8rem 1.2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  backdrop-filter: blur(8px);
 }
 
 .top-bar .titulo {
-  font-family: "Lora", Georgia, serif;
-  font-size: 1.6rem;
-  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 600;
   margin: 0;
+  color: #ffffff;
 }
 
 .top-bar .subtitulo {
-  color: #cfe3d6;
-  font-size: 0.95rem;
-  margin-top: 0.3rem;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin-top: 0.2rem;
 }
 
 .top-bar .modulo {
   display: inline-block;
-  margin-top: 0.8rem;
-  font-size: 0.8rem;
-  letter-spacing: 0.02em;
-  color: var(--ledger-green-dark);
-  background: var(--gold);
-  padding: 0.25rem 0.7rem;
-  border-radius: 3px;
+  margin-top: 0.5rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+  background: rgba(245, 199, 126, 0.1);
+  border: 1px solid rgba(245, 199, 126, 0.3);
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
 }
 
-.layout {
-  display: flex;
-  max-width: 1100px;
-  margin: 0 auto;
-  min-height: calc(100vh - 130px);
+.toggle-tema {
+  display: none; /* Oculto para experiencia móvil inmersiva */
 }
 
+/* Navegación Inferior (Tab Bar Móvil) */
 nav.indice {
-  width: 220px;
-  flex-shrink: 0;
-  padding: 1.5rem 1rem;
-  border-right: 1px solid var(--line);
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  background-color: var(--nav-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border-color);
+  z-index: 1000;
+  height: 68px;
 }
 
 nav.indice ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   list-style: none;
   padding: 0;
   margin: 0;
+  height: 100%;
 }
 
-nav.indice li + li { margin-top: 0.3rem; }
+nav.indice li {
+  flex: 1;
+  height: 100%;
+}
 
 .nav-btn {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  text-align: left;
-  padding: 0.5rem 0.7rem;
-  color: var(--ink-soft);
+  height: 100%;
   background: transparent;
   border: none;
-  border-left: 3px solid transparent;
-  border-radius: 4px;
-  font-size: 0.95rem;
-  font-family: inherit;
+  color: var(--text-secondary);
+  font-size: 0.68rem;
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  gap: 3px;
 }
 
-.nav-btn:hover,
 .nav-btn.activo {
-  background: var(--nav-hover);
-  color: var(--ledger-green-dark);
-  border-left-color: var(--ledger-green);
+  color: var(--gold-bright);
 }
 
-html[data-tema="oscuro"] .nav-btn:hover,
-html[data-tema="oscuro"] .nav-btn.activo {
-  color: #eaf5ee;
+.nav-btn.activo::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  width: 20px;
+  height: 3px;
+  background-color: var(--gold-bright);
+  border-radius: 3px;
 }
 
+/* Área de Contenido Principal */
 main {
   flex: 1;
-  padding: 1.8rem 2rem 3rem;
-  max-width: 720px;
+  padding: 1.2rem;
+  overflow-x: hidden;
 }
 
 section.bloque {
   display: none;
-  margin-bottom: 0;
-  padding-bottom: 0;
-  border-bottom: none;
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(12px);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
@@ -172,200 +185,158 @@ section.bloque.visible {
   transform: translateY(0);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  section.bloque {
-    transition: none;
-  }
-}
-
-section.bloque:last-of-type {
-  border-bottom: none;
-}
-
 section.bloque h2 {
-  font-size: 1.35rem;
+  font-size: 1.25rem;
+  color: var(--gold-bright);
+  margin-bottom: 1rem;
+  text-align: center;
 }
 
 section.bloque p {
-  color: var(--ink-soft);
-  margin: 0 0 0.9rem 0;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  margin-bottom: 0.8rem;
 }
 
-section.bloque ul.detalle {
-  margin: 0.9rem 0 0;
-  padding-left: 1.2rem;
-  color: var(--ink-soft);
+/* Tarjetas Estilo App */
+.bloque-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 1.1rem;
+  margin-bottom: 0.9rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
 
-section.bloque ul.detalle li { margin-bottom: 0.4rem; }
+ul.detalle {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0 0;
+}
 
+ul.detalle li {
+  position: relative;
+  padding-left: 1.4rem;
+  margin-bottom: 0.6rem;
+  color: var(--text-primary);
+  font-size: 0.88rem;
+}
+
+ul.detalle li::before {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  color: var(--gold-bright);
+}
+
+/* Tabla Adaptada a Móvil */
 .tabla-wrap {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
   overflow-x: auto;
-  border: 1px solid var(--line);
-  border-radius: 6px;
+  margin-top: 0.8rem;
 }
 
 table.clasificacion {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.92rem;
+  font-size: 0.82rem;
 }
 
 table.clasificacion th {
+  background: rgba(245, 199, 126, 0.08);
+  color: var(--gold-bright);
+  padding: 0.8rem 0.6rem;
   text-align: left;
-  background: var(--ledger-green);
-  color: #fff;
-  padding: 0.6rem 0.8rem;
-  font-weight: 600;
+  border-bottom: 1px solid var(--border-color);
 }
 
 table.clasificacion td {
-  padding: 0.6rem 0.8rem;
-  border-top: 1px solid var(--line);
-  color: var(--ink-soft);
-}
-
-table.clasificacion tr:nth-child(even) td {
-  background: var(--table-stripe);
+  padding: 0.8rem 0.6rem;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-secondary);
 }
 
 td.tasa {
-  color: var(--ledger-green-dark);
-  font-weight: 600;
+  color: var(--gold-bright);
+  font-weight: bold;
 }
 
-html[data-tema="oscuro"] td.tasa {
-  color: var(--gold);
-}
-
+/* Inputs y Calculadora Táctil */
 .calculadora {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 1.2rem 1.4rem;
-  margin-top: 1.2rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 1.2rem;
 }
 
 .calculadora .campo {
   display: flex;
   flex-direction: column;
-  margin-bottom: 0.9rem;
-  font-size: 0.9rem;
-  color: var(--ink-soft);
+  margin-bottom: 0.8rem;
 }
 
-.calculadora label { margin-bottom: 0.3rem; }
-
-.calculadora input,
-.calculadora select {
-  padding: 0.5rem 0.6rem;
-  border: 1px solid var(--line);
-  border-radius: 5px;
-  background: var(--paper);
-  color: var(--ink);
-  font-size: 0.95rem;
+.calculadora label {
+  font-size: 0.75rem;
+  color: var(--gold-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.3rem;
 }
 
-.calculadora .resultado {
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px dashed var(--line);
-  font-size: 0.95rem;
-}
-
-.calculadora .resultado strong {
-  color: var(--ledger-green-dark);
-}
-
-html[data-tema="oscuro"] .calculadora .resultado strong {
-  color: var(--gold);
-}
-
-.tarjetas-ejercicios {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.tarjeta-ejercicio {
-  background: var(--card);
-  border: 1px solid var(--line);
+.calculadora input {
+  background: #0b0e14;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 1rem 1.2rem;
-}
-
-.tarjeta-ejercicio h3 {
-  font-size: 1.05rem;
-  margin-bottom: 0.4rem;
-}
-
-.tarjeta-ejercicio p {
-  font-size: 0.9rem;
-}
-
-.btn-solucion {
-  background: var(--ledger-green);
+  padding: 10px 12px;
   color: #fff;
+  font-size: 0.95rem;
+}
+
+.calculadora input:focus {
+  outline: none;
+  border-color: var(--gold-bright);
+}
+
+/* Botones Premium */
+.btn-solucion, #reg-agregar {
+  width: 100%;
+  background: linear-gradient(135deg, var(--gold-muted) 0%, var(--gold-dark) 100%);
+  color: #000;
+  font-weight: 700;
   border: none;
-  padding: 0.45rem 0.9rem;
+  padding: 11px;
   border-radius: 20px;
   font-size: 0.85rem;
   cursor: pointer;
-  margin-top: 0.4rem;
+  margin-top: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.btn-solucion:hover {
-  background: var(--ledger-green-dark);
+.btn-solucion:active, #reg-agregar:active {
+  transform: scale(0.98);
+}
+
+.tarjeta-ejercicio {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
 }
 
 .solucion {
   margin-top: 0.8rem;
   padding-top: 0.8rem;
-  border-top: 1px dashed var(--line);
-}
-
-.solucion p {
-  margin: 0 0 0.3rem 0;
-  font-size: 0.88rem;
-}
-
-.solucion strong {
-  color: var(--ledger-green-dark);
-}
-
-html[data-tema="oscuro"] .solucion strong {
-  color: var(--gold);
-}
-
-.btn-eliminar {
-  background: transparent;
-  border: 1px solid var(--line);
-  color: var(--ink-soft);
-  border-radius: 4px;
-  cursor: pointer;
-  padding: 0.15rem 0.5rem;
-}
-
-.btn-eliminar:hover {
-  border-color: #b3413a;
-  color: #b3413a;
+  border-top: 1px dashed var(--border-color);
 }
 
 footer {
   text-align: center;
-  font-size: 0.8rem;
-  color: var(--ink-soft);
-  padding: 1.2rem;
-}
-
-@media (max-width: 720px) {
-  .layout { flex-direction: column; }
-  nav.indice {
-    width: 100%;
-    border-right: none;
-    border-bottom: 1px solid var(--line);
-  }
-  nav.indice ul { display: flex; flex-wrap: wrap; gap: 0.3rem; }
-  main { max-width: 100%; }
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  padding: 1rem;
+  margin-bottom: 60px;
 }
