@@ -7,6 +7,21 @@
   --gold: #b8863b;
   --line: #d8d2c2;
   --card: #ffffff;
+  --nav-hover: #eef2ec;
+  --table-stripe: #faf9f5;
+}
+
+html[data-tema="oscuro"] {
+  --paper: #171d19;
+  --ink: #e8ece8;
+  --ink-soft: #aeb8ae;
+  --ledger-green: #4d9470;
+  --ledger-green-dark: #0f1512;
+  --gold: #d8a75c;
+  --line: #2c352e;
+  --card: #1e2621;
+  --nav-hover: #212a24;
+  --table-stripe: #1a211d;
 }
 
 * { box-sizing: border-box; }
@@ -18,6 +33,7 @@ html, body {
   color: var(--ink);
   font-family: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   line-height: 1.55;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 h1, h2, h3 {
@@ -27,10 +43,38 @@ h1, h2, h3 {
 }
 
 .top-bar {
+  position: relative;
   background: var(--ledger-green-dark);
   color: var(--paper);
   padding: 1.6rem 1.5rem 1.4rem;
   border-bottom: 3px solid var(--gold);
+  transition: background-color 0.25s ease;
+}
+
+.toggle-tema {
+  position: absolute;
+  top: 1.4rem;
+  right: 1.5rem;
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.toggle-tema:hover {
+  background: var(--gold);
+  color: var(--ledger-green-dark);
+}
+
+@media (max-width: 560px) {
+  .toggle-tema {
+    position: static;
+    margin-top: 1rem;
+  }
 }
 
 .top-bar .titulo {
@@ -91,9 +135,14 @@ nav.indice a {
 
 nav.indice a:hover,
 nav.indice a.activo {
-  background: #eef2ec;
+  background: var(--nav-hover);
   color: var(--ledger-green-dark);
   border-left-color: var(--ledger-green);
+}
+
+html[data-tema="oscuro"] nav.indice a:hover,
+html[data-tema="oscuro"] nav.indice a.activo {
+  color: #eaf5ee;
 }
 
 main {
@@ -106,6 +155,22 @@ section.bloque {
   margin-bottom: 2.6rem;
   padding-bottom: 2rem;
   border-bottom: 1px solid var(--line);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+section.bloque.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  section.bloque {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 section.bloque:last-of-type {
@@ -156,12 +221,59 @@ table.clasificacion td {
 }
 
 table.clasificacion tr:nth-child(even) td {
-  background: #faf9f5;
+  background: var(--table-stripe);
 }
 
 td.tasa {
   color: var(--ledger-green-dark);
   font-weight: 600;
+}
+
+html[data-tema="oscuro"] td.tasa {
+  color: var(--gold);
+}
+
+.calculadora {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1.2rem 1.4rem;
+  margin-top: 1.2rem;
+}
+
+.calculadora .campo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.9rem;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.calculadora label { margin-bottom: 0.3rem; }
+
+.calculadora input,
+.calculadora select {
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+
+.calculadora .resultado {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--line);
+  font-size: 0.95rem;
+}
+
+.calculadora .resultado strong {
+  color: var(--ledger-green-dark);
+}
+
+html[data-tema="oscuro"] .calculadora .resultado strong {
+  color: var(--gold);
 }
 
 footer {
