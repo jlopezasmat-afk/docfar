@@ -2,40 +2,49 @@
 <html lang="es" data-tema="oscuro">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Activos Fijos — App Farmacia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Módulo Activos Fijos — Gestión Contable Farmacia</title>
   
-  <!-- Tipografías de Google -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
-  
-  <!-- Estilos CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <!-- Contenedor Principal (Shell de Smartphone) -->
-  <div class="layout">
-    
-    <!-- Top Bar / Encabezado de la App -->
-    <header class="top-bar" id="encabezado">
-      <!-- Se puebla dinámicamente desde script.js -->
-    </header>
+  <!-- Header / Barra de Navegación Estilo Huawei -->
+  <header class="huawei-nav">
+    <div class="nav-container">
+      <div class="brand">
+        <span class="logo-badge">PRO</span>
+        <span class="brand-name">Sistema Contable</span>
+      </div>
+      <nav class="sub-nav" id="indice">
+        <!-- Navegación dinámica -->
+      </nav>
+      <div class="nav-actions">
+        <button class="btn-primary" onclick="document.getElementById('calculadora').scrollIntoView({behavior: 'smooth'})">Calcular Ahora</button>
+      </div>
+    </div>
+  </header>
 
-    <!-- Contenido Dinámico según la pestaña seleccionada -->
-    <main id="contenido">
-      <!-- Las secciones, tablas, ejercicios y calculadora se renderizan aquí -->
-    </main>
+  <!-- Banner Principal / Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content" id="encabezado">
+      <!-- Datos de meta dinámicos -->
+    </div>
+  </section>
 
-    <!-- Navigation Tab Bar (Barra de Navegación Móvil Inferior) -->
-    <nav class="indice" id="indice">
-      <!-- Los botones de navegación con iconos se renderizan aquí -->
-    </nav>
+  <!-- Contenido Dinámico (Módulos, Tablas y Herramientas) -->
+  <main class="main-container" id="contenido">
+    <!-- Secciones renderizadas desde script.js -->
+  </main>
 
-  </div>
+  <!-- Footer Estilo Tienda Oficial -->
+  <footer class="huawei-footer">
+    <p>© 2026 Sistema de Gestión Contable para Farmacias. Todos los derechos reservados.</p>
+  </footer>
 
-  <!-- Lógica JavaScript -->
   <script src="script.js"></script>
 </body>
 </html>
