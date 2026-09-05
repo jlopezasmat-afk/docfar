@@ -12,7 +12,10 @@ async function cargarContenido() {
     renderNav(contenedorNav, datos.secciones);
     renderSecciones(contenedorMain, datos.secciones);
     renderClasificacion(contenedorMain, datos.clasificacion);
+    renderCalculadora(contenedorMain);
     activarNavegacionScroll();
+    activarAnimacionEntrada();
+    activarToggleTema();
   } catch (error) {
     contenedorMain.innerHTML =
       "<p>No se pudo cargar el contenido (data.json). Si abriste el archivo " +
@@ -38,6 +41,7 @@ function renderNav(elemento, secciones) {
     <ul>
       ${items}
       <li><a href="#clasificacion">Clasificación y depreciación</a></li>
+      <li><a href="#calculadora">Calculadora</a></li>
     </ul>
   `;
 }
@@ -118,6 +122,96 @@ function activarNavegacionScroll() {
   );
 
   secciones.forEach((s) => observador.observe(s));
+}
+
+function renderCalculadora(elemento) {
+  const html = `
+    <section class="bloque" id="calculadora">
+      <h2>Calculadora rápida de depreciación</h2>
+      <p>Ingresa el costo del activo y su vida útil para estimar la depreciación anual y mensual en línea recta.</p>
+      <div class="calculadora">
+        <div class="campo">
+          <label for="calc-costo">Costo del activo (S/)</label>
+          <input type="number" id="calc-costo" min="0" step="0.01" placeholder="Ej. 3500" />
+        </div>
+        <div class="campo">
+          <label for="calc-vida">Vida útil (años)</label>
+          <input type="number" id="calc-vida" min="1" step="1" placeholder="Ej. 4" />
+        </div>
+        <div class="resultado" id="calc-resultado">
+          Completa ambos campos para ver el resultado.
+        </div>
+      </div>
+    </section>
+  `;
+  elemento.insertAdjacentHTML("beforeend", html);
+
+  const inputCosto = document.getElementById("calc-costo");
+  const inputVida = document.getElementById("calc-vida");
+  const resultado = document.getElementById("calc-resultado");
+
+  function calcular() {
+    const costo = parseFloat(inputCosto.value);
+    const vida = parseFloat(inputVida.value);
+
+    if (!costo || !vida || costo <= 0 || vida <= 0) {
+      resultado.textContent = "Completa ambos campos para ver el resultado.";
+      return;
+    }
+
+    const anual = costo / vida;
+    const mensual = anual / 12;
+    const tasaAnual = (100 / vida).toFixed(1);
+
+    resultado.innerHTML = `
+      Depreciación anual: <strong>S/ ${anual.toFixed(2)}</strong>
+      (equivalente a ${tasaAnual}% del costo) ·
+      Depreciación mensual: <strong>S/ ${mensual.toFixed(2)}</strong>
+    `;
+  }
+
+  inputCosto.addEventListener("input", calcular);
+  inputVida.addEventListener("input", calcular);
+}
+
+function activarAnimacionEntrada() {
+  const secciones = document.querySelectorAll("section.bloque");
+  const observador = new IntersectionObserver(
+    (entradas, obs) => {
+      entradas.forEach((entrada) => {
+        if (entrada.isIntersecting) {
+          entrada.target.classList.add("visible");
+          obs.unobserve(entrada.target);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+  secciones.forEach((s) => observador.observe(s));
+}
+
+function activarToggleTema() {
+  const boton = document.getElementById("toggle-tema");
+  const raiz = document.documentElement;
+  const temaGuardado = localStorage.getItem("tema-preferido");
+
+  if (temaGuardado === "oscuro") {
+    raiz.setAttribute("data-tema", "oscuro");
+    boton.textContent = "☀️ Claro";
+  }
+
+  boton.addEventListener("click", () => {
+    const esOscuro = raiz.getAttribute("data-tema") === "oscuro";
+    if (esOscuro) {
+      raiz.removeAttribute("data-tema");
+      boton.textContent = "🌙 Oscuro";
+      localStorage.setItem("tema-preferido", "claro");
+    } else {
+      raiz.setAttribute("data-tema", "oscuro");
+      boton.textContent = "☀️ Claro";
+      localStorage.setItem("tema-preferido", "oscuro");
+    }
+  });
 }
 
 document.addEventListener("DOMContentLoaded", cargarContenido);
