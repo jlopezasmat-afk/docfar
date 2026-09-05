@@ -13,8 +13,7 @@ async function cargarContenido() {
     renderSecciones(contenedorMain, datos.secciones);
     renderClasificacion(contenedorMain, datos.clasificacion);
     renderCalculadora(contenedorMain);
-    activarNavegacionScroll();
-    activarAnimacionEntrada();
+    activarNavegacionBotones();
     activarToggleTema();
   } catch (error) {
     contenedorMain.innerHTML =
@@ -35,13 +34,13 @@ function renderEncabezado(elemento, meta) {
 
 function renderNav(elemento, secciones) {
   const items = secciones
-    .map((s) => `<li><a href="#${s.id}">${s.titulo}</a></li>`)
+    .map((s) => `<li><button type="button" class="nav-btn" data-target="${s.id}">${s.titulo}</button></li>`)
     .join("");
   elemento.innerHTML = `
     <ul>
       ${items}
-      <li><a href="#clasificacion">Clasificación y depreciación</a></li>
-      <li><a href="#calculadora">Calculadora</a></li>
+      <li><button type="button" class="nav-btn" data-target="clasificacion">Clasificación y depreciación</button></li>
+      <li><button type="button" class="nav-btn" data-target="calculadora">Calculadora</button></li>
     </ul>
   `;
 }
@@ -102,26 +101,25 @@ function renderClasificacion(elemento, clasificacion) {
   elemento.insertAdjacentHTML("beforeend", html);
 }
 
-function activarNavegacionScroll() {
-  const enlaces = document.querySelectorAll("nav.indice a");
+function activarNavegacionBotones() {
+  const botones = document.querySelectorAll(".nav-btn");
   const secciones = document.querySelectorAll("section.bloque");
 
-  const observador = new IntersectionObserver(
-    (entradas) => {
-      entradas.forEach((entrada) => {
-        if (entrada.isIntersecting) {
-          enlaces.forEach((a) => a.classList.remove("activo"));
-          const activo = document.querySelector(
-            `nav.indice a[href="#${entrada.target.id}"]`
-          );
-          if (activo) activo.classList.add("activo");
-        }
-      });
-    },
-    { rootMargin: "-40% 0px -50% 0px" }
-  );
+  function mostrarSeccion(id) {
+    secciones.forEach((s) => {
+      s.classList.toggle("visible", s.id === id);
+    });
+    botones.forEach((b) => {
+      b.classList.toggle("activo", b.dataset.target === id);
+    });
+  }
 
-  secciones.forEach((s) => observador.observe(s));
+  botones.forEach((boton) => {
+    boton.addEventListener("click", () => mostrarSeccion(boton.dataset.target));
+  });
+
+  const primerId = secciones[0] ? secciones[0].id : null;
+  if (primerId) mostrarSeccion(primerId);
 }
 
 function renderCalculadora(elemento) {
@@ -172,22 +170,6 @@ function renderCalculadora(elemento) {
 
   inputCosto.addEventListener("input", calcular);
   inputVida.addEventListener("input", calcular);
-}
-
-function activarAnimacionEntrada() {
-  const secciones = document.querySelectorAll("section.bloque");
-  const observador = new IntersectionObserver(
-    (entradas, obs) => {
-      entradas.forEach((entrada) => {
-        if (entrada.isIntersecting) {
-          entrada.target.classList.add("visible");
-          obs.unobserve(entrada.target);
-        }
-      });
-    },
-    { threshold: 0.1 }
-  );
-  secciones.forEach((s) => observador.observe(s));
 }
 
 function activarToggleTema() {
