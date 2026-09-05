@@ -98,5 +98,47 @@
       "vidaUtilAnios": 10,
       "tasaSunat": "10%"
     }
-  ]
+  ],
+  "ejercicios": {
+    "titulo": "Ejercicio: Boticas IP SAC",
+    "intro": [
+      "Boticas IP SAC (RUC 20472594321), al 01 de enero del 2026, posee los siguientes activos fijos. Se depreciarán por el método de línea recta.",
+      "Revisa el enunciado de cada activo e intenta calcular tú mismo la depreciación anual, la mensual, la acumulada hasta el 01/01/2026 y el valor en libros antes de ver la solución."
+    ],
+    "fechaCorte": "01-01-2026",
+    "practicas": [
+      {
+        "id": "auto",
+        "nombre": "a. Auto Hyundai",
+        "descripcion": "Costo S/ 50,100.00, modelo 2016, placa A0-248, comprado el 01-08-2022, operativo desde el mismo día.",
+        "costo": 50100,
+        "vidaUtil": 5,
+        "fechaCompra": "01-08-2022"
+      },
+      {
+        "id": "estante",
+        "nombre": "b. Estante",
+        "descripcion": "Costo S/ 4,800.00, adquirido el 01-03-2022, instalado el mismo día.",
+        "costo": 4800,
+        "vidaUtil": 10,
+        "fechaCompra": "01-03-2022"
+      },
+      {
+        "id": "laptop",
+        "nombre": "c. Laptop As-45",
+        "descripcion": "Costo S/ 2,880.00, serie 00467, adquirida el 01-06-2023, puesta en funcionamiento el mismo día.",
+        "costo": 2880,
+        "vidaUtil": 4,
+        "fechaCompra": "01-06-2023"
+      },
+      {
+        "id": "impresora",
+        "nombre": "d. Impresora",
+        "descripcion": "Costo S/ 1,440.00, adquirida y puesta en funcionamiento el 01-01-2024.",
+        "costo": 1440,
+        "vidaUtil": 4,
+        "fechaCompra": "01-01-2024"
+      }
+    ]
+  }
 }
