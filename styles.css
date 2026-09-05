@@ -123,25 +123,30 @@ nav.indice ul {
 
 nav.indice li + li { margin-top: 0.3rem; }
 
-nav.indice a {
+.nav-btn {
   display: block;
+  width: 100%;
+  text-align: left;
   padding: 0.5rem 0.7rem;
   color: var(--ink-soft);
-  text-decoration: none;
+  background: transparent;
+  border: none;
+  border-left: 3px solid transparent;
   border-radius: 4px;
   font-size: 0.95rem;
-  border-left: 3px solid transparent;
+  font-family: inherit;
+  cursor: pointer;
 }
 
-nav.indice a:hover,
-nav.indice a.activo {
+.nav-btn:hover,
+.nav-btn.activo {
   background: var(--nav-hover);
   color: var(--ledger-green-dark);
   border-left-color: var(--ledger-green);
 }
 
-html[data-tema="oscuro"] nav.indice a:hover,
-html[data-tema="oscuro"] nav.indice a.activo {
+html[data-tema="oscuro"] .nav-btn:hover,
+html[data-tema="oscuro"] .nav-btn.activo {
   color: #eaf5ee;
 }
 
@@ -152,23 +157,23 @@ main {
 }
 
 section.bloque {
-  margin-bottom: 2.6rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid var(--line);
+  display: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
   opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 section.bloque.visible {
+  display: block;
   opacity: 1;
   transform: translateY(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
   section.bloque {
-    opacity: 1;
-    transform: none;
     transition: none;
   }
 }
