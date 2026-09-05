@@ -1,32 +1,41 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-tema="oscuro">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Documentos Contables — Farmacia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Activos Fijos — App Farmacia</title>
+  
+  <!-- Tipografías de Google -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  
+  <!-- Estilos CSS -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="top-bar">
-    <div id="encabezado">
-      <!-- Se llena dinámicamente desde data.json -->
-    </div>
-    <button id="toggle-tema" class="toggle-tema" aria-label="Cambiar a modo oscuro">🌙 Oscuro</button>
-  </header>
 
+  <!-- Contenedor Principal (Shell de Smartphone) -->
   <div class="layout">
-    <nav class="indice" id="indice">
-      <!-- Se llena dinámicamente desde data.json -->
-    </nav>
+    
+    <!-- Top Bar / Encabezado de la App -->
+    <header class="top-bar" id="encabezado">
+      <!-- Se puebla dinámicamente desde script.js -->
+    </header>
+
+    <!-- Contenido Dinámico según la pestaña seleccionada -->
     <main id="contenido">
-      <!-- Las secciones y la tabla se insertan aquí -->
+      <!-- Las secciones, tablas, ejercicios y calculadora se renderizan aquí -->
     </main>
+
+    <!-- Navigation Tab Bar (Barra de Navegación Móvil Inferior) -->
+    <nav class="indice" id="indice">
+      <!-- Los botones de navegación con iconos se renderizan aquí -->
+    </nav>
+
   </div>
 
-  <footer>Documentos Contables · Farmacia · Trujillo, Perú</footer>
-
+  <!-- Lógica JavaScript -->
   <script src="script.js"></script>
 </body>
 </html>
