@@ -22,17 +22,9 @@ async function cargarContenido() {
 
 function renderEncabezado(elemento, meta) {
   elemento.innerHTML = `
-    <div class="hero-wrapper">
-      <div class="hero-text">
-        <span class="modulo">Módulo ${meta.modulo}</span>
-        <h1 class="titulo">${meta.titulo}</h1>
-        <p class="subtitulo">${meta.subtitulo}</p>
-      </div>
-      <!-- Imagen Banner Principal Estilo Showcase -->
-      <div class="hero-media">
-        <img src="https://images.unsplash.com/photo-1576602976047-174e57a47881?auto=format&fit=crop&w=1200&q=80" alt="Gestión de Farmacia" class="hero-img" />
-      </div>
-    </div>
+    <span class="modulo">Módulo ${meta.modulo}</span>
+    <h1 class="titulo">${meta.titulo}</h1>
+    <p class="subtitulo">${meta.subtitulo}</p>
   `;
 }
 
@@ -51,33 +43,19 @@ function renderNav(elemento, secciones) {
 }
 
 function renderSecciones(elemento, secciones) {
-  // URLs de imagen demostrativas para cada sección del producto
-  const imagenesSeccion = [
-    "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80",
-    "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=600&q=80",
-    "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&w=600&q=80",
-    "https://images.unsplash.com/photo-1585435557343-3b092031a831?auto=format&fit=crop&w=600&q=80"
-  ];
-
   const html = secciones
-    .map((s, index) => {
+    .map((s) => {
       const parrafos = (s.parrafos || []).map((p) => `<p>${p}</p>`).join("");
       const lista = s.lista
         ? `<ul class="detalle">${s.lista.map((li) => `<li>✓ ${li}</li>`).join("")}</ul>`
         : "";
-      const imgUrl = imagenesSeccion[index % imagenesSeccion.length];
 
       return `
         <section class="bloque" id="${s.id}">
           <h2>${s.titulo}</h2>
-          <div class="card-grid">
-            <div class="card-item">
-              ${parrafos}
-              ${lista}
-            </div>
-            <div class="card-image-wrap">
-              <img src="${imgUrl}" alt="${s.titulo}" class="section-img" />
-            </div>
+          <div class="card-item">
+            ${parrafos}
+            ${lista}
           </div>
         </section>
       `;
