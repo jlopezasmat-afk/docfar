@@ -281,6 +281,77 @@ html[data-tema="oscuro"] .calculadora .resultado strong {
   color: var(--gold);
 }
 
+.tarjetas-ejercicios {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.tarjeta-ejercicio {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+}
+
+.tarjeta-ejercicio h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.4rem;
+}
+
+.tarjeta-ejercicio p {
+  font-size: 0.9rem;
+}
+
+.btn-solucion {
+  background: var(--ledger-green);
+  color: #fff;
+  border: none;
+  padding: 0.45rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-top: 0.4rem;
+}
+
+.btn-solucion:hover {
+  background: var(--ledger-green-dark);
+}
+
+.solucion {
+  margin-top: 0.8rem;
+  padding-top: 0.8rem;
+  border-top: 1px dashed var(--line);
+}
+
+.solucion p {
+  margin: 0 0 0.3rem 0;
+  font-size: 0.88rem;
+}
+
+.solucion strong {
+  color: var(--ledger-green-dark);
+}
+
+html[data-tema="oscuro"] .solucion strong {
+  color: var(--gold);
+}
+
+.btn-eliminar {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 0.15rem 0.5rem;
+}
+
+.btn-eliminar:hover {
+  border-color: #b3413a;
+  color: #b3413a;
+}
+
 footer {
   text-align: center;
   font-size: 0.8rem;
