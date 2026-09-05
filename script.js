@@ -13,20 +13,26 @@ async function cargarContenido() {
     renderSecciones(contenedorMain, datos.secciones);
     renderClasificacion(contenedorMain, datos.clasificacion);
     renderEjercicios(contenedorMain, datos.ejercicios);
-    renderRegistro(contenedorMain);
     renderCalculadora(contenedorMain);
-    activarNavegacionSmooth();
   } catch (error) {
-    contenedorMain.innerHTML = "<p>Error al cargar la información.</p>";
+    contenedorMain.innerHTML = "<p style='color:red;'>Error al cargar los datos de data.json</p>";
     console.error(error);
   }
 }
 
 function renderEncabezado(elemento, meta) {
   elemento.innerHTML = `
-    <span class="modulo">Módulo ${meta.modulo}</span>
-    <h1 class="titulo">${meta.titulo}</h1>
-    <p class="subtitulo">${meta.subtitulo}</p>
+    <div class="hero-wrapper">
+      <div class="hero-text">
+        <span class="modulo">Módulo ${meta.modulo}</span>
+        <h1 class="titulo">${meta.titulo}</h1>
+        <p class="subtitulo">${meta.subtitulo}</p>
+      </div>
+      <!-- Imagen Banner Principal Estilo Showcase -->
+      <div class="hero-media">
+        <img src="https://images.unsplash.com/photo-1576602976047-174e57a47881?auto=format&fit=crop&w=1200&q=80" alt="Gestión de Farmacia" class="hero-img" />
+      </div>
+    </div>
   `;
 }
 
@@ -45,18 +51,33 @@ function renderNav(elemento, secciones) {
 }
 
 function renderSecciones(elemento, secciones) {
+  // URLs de imagen demostrativas para cada sección del producto
+  const imagenesSeccion = [
+    "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80",
+    "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=600&q=80",
+    "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&w=600&q=80",
+    "https://images.unsplash.com/photo-1585435557343-3b092031a831?auto=format&fit=crop&w=600&q=80"
+  ];
+
   const html = secciones
-    .map((s) => {
+    .map((s, index) => {
       const parrafos = (s.parrafos || []).map((p) => `<p>${p}</p>`).join("");
       const lista = s.lista
-        ? `<ul class="detalle">${s.lista.map((li) => `<li>${li}</li>`).join("")}</ul>`
+        ? `<ul class="detalle">${s.lista.map((li) => `<li>✓ ${li}</li>`).join("")}</ul>`
         : "";
+      const imgUrl = imagenesSeccion[index % imagenesSeccion.length];
+
       return `
         <section class="bloque" id="${s.id}">
           <h2>${s.titulo}</h2>
-          <div class="card-item">
-            ${parrafos}
-            ${lista}
+          <div class="card-grid">
+            <div class="card-item">
+              ${parrafos}
+              ${lista}
+            </div>
+            <div class="card-image-wrap">
+              <img src="${imgUrl}" alt="${s.titulo}" class="section-img" />
+            </div>
           </div>
         </section>
       `;
@@ -66,6 +87,7 @@ function renderSecciones(elemento, secciones) {
 }
 
 function renderClasificacion(elemento, clasificacion) {
+  if (!clasificacion) return;
   const filas = clasificacion
     .map(
       (c) => `
@@ -73,14 +95,14 @@ function renderClasificacion(elemento, clasificacion) {
           <td><strong>${c.categoria}</strong></td>
           <td>${c.ejemplos}</td>
           <td>${c.vidaUtilAnios} años</td>
-          <td class="tasa">${c.tasaSunat}</td>
+          <td style="color:var(--accent-gold); font-weight:bold;">${c.tasaSunat}</td>
         </tr>`
     )
     .join("");
 
   const html = `
     <section class="bloque" id="clasificacion">
-      <h2>Clasificación y Tasas Referenciales</h2>
+      <h2>Clasificación y Tasas</h2>
       <div class="tabla-wrap">
         <table class="clasificacion">
           <thead>
@@ -91,9 +113,7 @@ function renderClasificacion(elemento, clasificacion) {
               <th>Tasa Anual</th>
             </tr>
           </thead>
-          <tbody>
-            ${filas}
-          </tbody>
+          <tbody>${filas}</tbody>
         </table>
       </div>
     </section>
@@ -103,10 +123,9 @@ function renderClasificacion(elemento, clasificacion) {
 
 function renderEjercicios(elemento, ejercicios) {
   if (!ejercicios) return;
-
-  const tarjetas = ejercicios.practicas
+  const tarjetas = (ejercicios.practicas || [])
     .map((p) => `
-      <div class="card-item" style="margin-bottom:1rem;">
+      <div class="card-item">
         <h3>${p.nombre}</h3>
         <p>${p.descripcion}</p>
         <p><strong>Costo:</strong> S/ ${p.costo.toLocaleString()} | <strong>Vida útil:</strong> ${p.vidaUtil} años</p>
@@ -117,23 +136,7 @@ function renderEjercicios(elemento, ejercicios) {
   const html = `
     <section class="bloque" id="ejercicios">
       <h2>${ejercicios.titulo}</h2>
-      <div class="grid-cards">${tarjetas}</div>
-    </section>
-  `;
-  elemento.insertAdjacentHTML("beforeend", html);
-}
-
-function renderRegistro(elemento) {
-  const html = `
-    <section class="bloque" id="registro">
-      <h2>Registro Rápido de Activos</h2>
-      <div class="calculadora">
-        <div class="campo"><label>Código</label><input type="text" id="reg-codigo" placeholder="Ej. EQ-01" /></div>
-        <div class="campo"><label>Descripción</label><input type="text" id="reg-descripcion" placeholder="Ej. Refrigeradora" /></div>
-        <div class="campo"><label>Costo (S/)</label><input type="number" id="reg-costo" /></div>
-        <div class="campo"><label>Vida Útil (Años)</label><input type="number" id="reg-vida" /></div>
-        <button type="button" id="reg-agregar">Guardar Activo</button>
-      </div>
+      ${tarjetas}
     </section>
   `;
   elemento.insertAdjacentHTML("beforeend", html);
@@ -177,7 +180,5 @@ function renderCalculadora(elemento) {
   inputCosto.addEventListener("input", calcular);
   inputVida.addEventListener("input", calcular);
 }
-
-function activarNavegacionSmooth() {}
 
 document.addEventListener("DOMContentLoaded", cargarContenido);
